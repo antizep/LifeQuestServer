@@ -1,0 +1,23 @@
+server:
+  port: 8181
+  servlet:
+    context-path: /lifequest
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: ${JPA.SHOW.SQL:true}
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL95Dialect
+        format-sql: ${JPA.SHOW.SQL:false}
+  datasource:
+    url: ${DATASOURCE.URL:jdbc:postgresql://192.168.0.11:5432/life_quest}
+    username:  ${DATASOURCE.USERNAME:postgres}
+    password: ${DATASOURCE.PASSWORD:password}
+  liquibase:
+    change-log: classpath:db.changelog/db.changelog.yaml

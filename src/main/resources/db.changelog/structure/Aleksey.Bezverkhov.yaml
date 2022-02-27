@@ -1,0 +1,108 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: 1634743824248-1
+      author: Aleksey.Bezverkhov (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    unique: true
+                    primaryKeyName: user_pkey
+                  name: id
+                  type: serial
+              - column:
+                  constraints:
+                    nullable: false
+                    unique: true
+                    primaryKey: true
+                  name: username
+                  type: varchar
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: password
+                  type: varchar
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: authority
+                  type: varchar
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: enabled
+                  type: boolean
+            tableName: user
+
+  - changeSet:
+      id: 1634743824248-2
+      author: Aleksey.Bezverkhov (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: schedule_pkey
+                  name: remoteId
+                  type: serial
+
+              - column:
+                  constraints:
+                    nullable: false
+                    foreignKeyName: schedule_by_user_fk
+                    references: user(id)
+                  name: userId
+                  type: integer
+
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: header
+                  type: varchar
+              - column:
+                  constraints:
+                    nullable: true
+                    primaryKey: true
+                  name: description
+                  type: varchar
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: daily
+                  type: boolean
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: day_of_week
+                  type: varchar
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: time
+                  type: time
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: done
+                  type: integer
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: rejected
+                  type: integer
+            tableName: schedule
