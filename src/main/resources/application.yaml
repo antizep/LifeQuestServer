@@ -1,12 +1,24 @@
 server:
-  port: 8181
+  port: 8191
   servlet:
     context-path: /lifequest
 
 spring:
   main:
     allow-bean-definition-overriding: true
-
+  mail:
+    host: smtp.yandex.ru
+    port: 587
+    username: admin@antizep.ru
+    password: xxxxx
+    properties:
+      mail:
+        transport:
+          protocol: smtp
+        smtp:
+          auth: true
+          starttls:
+            enable: true
   jpa:
     hibernate:
       ddl-auto: none
@@ -17,8 +29,10 @@ spring:
         format-sql: ${JPA.SHOW.SQL:false}
   datasource:
     url: ${DATASOURCE.URL:jdbc:postgresql://192.168.0.11:5432/life_quest}
-    username:  ${DATASOURCE.USERNAME:postgres}
+#    url: ${DATASOURCE.URL:jdbc:postgresql://localhost:5432/life_quest}
     password: ${DATASOURCE.PASSWORD:password}
+#    password: ${DATASOURCE.PASSWORD:j7h12Q23}
+    username:  ${DATASOURCE.USERNAME:postgres}
   liquibase:
     change-log: classpath:db.changelog/db.changelog.yaml
 

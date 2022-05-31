@@ -52,7 +52,7 @@ databaseChangeLog:
                     nullable: false
                     primaryKey: true
                     primaryKeyName: schedule_pkey
-                  name: remoteId
+                  name: remote_id
                   type: serial
 
               - column:
@@ -60,43 +60,37 @@ databaseChangeLog:
                     nullable: false
                     foreignKeyName: schedule_by_user_fk
                     references: user(id)
-                  name: userId
+                  name: user_id
                   type: integer
 
               - column:
                   constraints:
                     nullable: false
-                    primaryKey: true
                   name: header
                   type: varchar
               - column:
                   constraints:
                     nullable: true
-                    primaryKey: true
                   name: description
                   type: varchar
               - column:
                   constraints:
                     nullable: false
-                    primaryKey: true
                   name: daily
                   type: boolean
               - column:
                   constraints:
                     nullable: false
-                    primaryKey: true
                   name: day_of_week
                   type: varchar
               - column:
                   constraints:
                     nullable: false
-                    primaryKey: true
                   name: time
                   type: time
               - column:
                   constraints:
                     nullable: false
-                    primaryKey: true
                   name: done
                   type: integer
               - column:
@@ -106,3 +100,35 @@ databaseChangeLog:
                   name: rejected
                   type: integer
             tableName: schedule
+
+  - changeSet:
+      id: 1634743824248-2
+      author: Aleksey.Bezverkhov
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    unique: true
+                    primaryKeyName: mail_code_pkey
+                  name: mail
+                  type: varchar
+              - column:
+                  constraints:
+                    nullable: false
+                  name: code
+                  type: integer
+            tableName: mail_code
+
+  - changeSet:
+      id: 1634743824248-3
+      author: liquibase-docs
+      changes:
+        - addColumn:
+            tableName: mail_code
+            columns:
+              - column:
+                  name: is_verify
+                  type: BOOLEAN

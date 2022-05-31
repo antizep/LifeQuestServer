@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface ScheduleRepository extends CrudRepository<ScheduleEntity,Integer> {
     List<ScheduleEntity> findAllByUserEntity(UserEntity user);
+    ScheduleEntity findByRemoteId(long remoteId);
 }
